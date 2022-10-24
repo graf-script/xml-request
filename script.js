@@ -1,5 +1,5 @@
 
-const list = document.querySelector('li');
+const list = document.querySelector('ul');
 
 function request(callback, url, method = 'GET', body = null, headers = {}) {
     const xhr = new XMLHttpRequest();
@@ -20,14 +20,16 @@ request((response) => {
 
     Object.values(data).forEach((users) => {
         const item = document.createElement('li');
-        const pos = document.createElement('p');
+        const itemName = document.createElement('h1');
+        const itemPosition = document.createElement('p');
         const itemPhoto = document.createElement('img');
 
-        item.innerText = users.name;
+        itemName.innerText = users.name;
         itemPhoto.src = users.photo;
-        pos.innerText = users.position;
+        itemPosition.innerText = users.position;
         list.append(item);
-        list.append(itemPhoto);
-        list.append(pos);
+        item.append(itemName);
+        item.append(itemPhoto);
+        item.append(itemPosition);
     });
 }, 'https://users-api-id.herokuapp.com/users');
